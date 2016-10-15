@@ -20,11 +20,31 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Nod
 
 ```bash
 # Clone this repository
-git clone https://github.com/electron/electron-quick-start
+git clone https://github.com/ekawahyu/electron-quick-start-serialport
 # Go into the repository
-cd electron-quick-start
+cd electron-quick-start-serialport
+# Install nvm using curl
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
+# or install nvm using wget
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
+# Install node.js 5.12.0
+nvm install 5.12.0
+# Install electron globally
+npm install -g electron
+# Install node-gyp globally
+npm install -g node-gyp
 # Install dependencies and run the app
 npm install && npm start
+```
+
+## Electron-rebuild
+
+For some reason if you get version mismatch, you can try to rebuild the native node module as follow. Please remove all "dependencies" and "devDependencies" from package.json before executing these commands:
+
+```bash
+npm install --save serialport
+npm install --save-dev electron-rebuild
+./node_modules/.bin/electron-rebuild -$(electron -v)
 ```
 
 Learn more about Electron and its API in the [documentation](http://electron.atom.io/docs/latest).
